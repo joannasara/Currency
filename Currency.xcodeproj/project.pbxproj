@@ -14,6 +14,9 @@
 		0B4DDC5C28E75CE700DDBF5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B4DDC5A28E75CE700DDBF5C /* LaunchScreen.storyboard */; };
 		0B4DDC6428E7644100DDBF5C /* CCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4DDC6328E7644100DDBF5C /* CCNavigationController.swift */; };
 		0B4DDC6628E7680900DDBF5C /* CCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4DDC6528E7680900DDBF5C /* CCTableViewCell.swift */; };
+		0BC32DB028E85BD0004524C6 /* CCInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DAF28E85BD0004524C6 /* CCInteractor.swift */; };
+		0BC32DB228E89325004524C6 /* CCPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DB128E89325004524C6 /* CCPresenter.swift */; };
+		0BC32DB428E89B15004524C6 /* CCAddRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DB328E89B15004524C6 /* CCAddRowCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		0B4DDC5D28E75CE700DDBF5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B4DDC6328E7644100DDBF5C /* CCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCNavigationController.swift; sourceTree = "<group>"; };
 		0B4DDC6528E7680900DDBF5C /* CCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTableViewCell.swift; sourceTree = "<group>"; };
+		0BC32DAF28E85BD0004524C6 /* CCInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCInteractor.swift; sourceTree = "<group>"; };
+		0BC32DB128E89325004524C6 /* CCPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCPresenter.swift; sourceTree = "<group>"; };
+		0BC32DB328E89B15004524C6 /* CCAddRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCAddRowCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,9 @@
 				0B4DDC5D28E75CE700DDBF5C /* Info.plist */,
 				0B4DDC6328E7644100DDBF5C /* CCNavigationController.swift */,
 				0B4DDC6528E7680900DDBF5C /* CCTableViewCell.swift */,
+				0BC32DAF28E85BD0004524C6 /* CCInteractor.swift */,
+				0BC32DB128E89325004524C6 /* CCPresenter.swift */,
+				0BC32DB328E89B15004524C6 /* CCAddRowCell.swift */,
 			);
 			path = Currency;
 			sourceTree = "<group>";
@@ -144,6 +153,9 @@
 				0B4DDC6628E7680900DDBF5C /* CCTableViewCell.swift in Sources */,
 				0B4DDC6428E7644100DDBF5C /* CCNavigationController.swift in Sources */,
 				0B4DDC5028E75CE300DDBF5C /* AppDelegate.swift in Sources */,
+				0BC32DB428E89B15004524C6 /* CCAddRowCell.swift in Sources */,
+				0BC32DB228E89325004524C6 /* CCPresenter.swift in Sources */,
+				0BC32DB028E85BD0004524C6 /* CCInteractor.swift in Sources */,
 				0B4DDC5228E75CE300DDBF5C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
