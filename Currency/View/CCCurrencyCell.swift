@@ -35,11 +35,30 @@ class CCCurrencyCell: CCBaseCell, UITextViewDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+                
+        currencyLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            currencyLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            currencyLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            currencyLabel.widthAnchor.constraint(equalToConstant: 90),
+            currencyLabel.heightAnchor.constraint(equalToConstant: 30)
+        ])
         
-        let frameWidth = contentView.frame.width
-        currencyLabel.frame = CGRect(x: 20, y: 10, width: 90, height: 30)
-        valueTextView.frame = CGRect(x: 120, y: 10, width:frameWidth-180, height: 30)
-        updateButton.frame = CGRect(x: frameWidth-50, y: 10, width: 30, height: 30)
+        updateButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            updateButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            updateButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            updateButton.widthAnchor.constraint(equalToConstant: 30),
+            updateButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        
+        valueTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            valueTextView.leftAnchor.constraint(equalTo: currencyLabel.rightAnchor, constant: 10),
+            valueTextView.rightAnchor.constraint(equalTo: updateButton.leftAnchor, constant: -10),
+            valueTextView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            valueTextView.heightAnchor.constraint(equalToConstant: 30)
+        ])
     }
     
     @objc func handleButtonClick() {

@@ -34,6 +34,7 @@ class CCBaseCell: UITableViewCell {
         self.contentView.layer.shadowOpacity = 0.2
         self.contentView.layer.shadowOffset = .zero
         self.contentView.layer.shadowRadius = 2
+        self.contentView.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,8 +44,6 @@ class CCBaseCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         contentView.frame = CGRect(x: 10, y: 10, width: contentView.frame.width-20, height: 50)
-        contentView.layer.cornerRadius = 10
     }
 }

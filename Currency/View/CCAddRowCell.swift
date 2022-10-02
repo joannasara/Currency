@@ -20,8 +20,14 @@ class CCAddRowCell: CCBaseCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        plusImage.frame = CGRect(x: (contentView.frame.width-20)/2, y: (contentView.frame.height-20)/2, width: 20, height: 20)
+                
+        plusImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            plusImage.heightAnchor.constraint(equalToConstant: 20),
+            plusImage.widthAnchor.constraint(equalToConstant: 20),
+            plusImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            plusImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
