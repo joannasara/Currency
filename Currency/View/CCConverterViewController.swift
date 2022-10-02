@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CCViewController: UITableViewController {
+class CCConverterViewController: UITableViewController {
     
     
     let currencyCellID = "currencyCellID"
