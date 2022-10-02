@@ -19,6 +19,7 @@
 		0BC32DB428E89B15004524C6 /* CCAddRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DB328E89B15004524C6 /* CCAddRowCell.swift */; };
 		0BC32DBC28E941A5004524C6 /* CCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DBB28E941A5004524C6 /* CCModel.swift */; };
 		0BC32DBE28E94C74004524C6 /* CCBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DBD28E94C74004524C6 /* CCBaseCell.swift */; };
+		0BC32DC028E9617A004524C6 /* CCCurrencyPickerPopupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DBF28E9617A004524C6 /* CCCurrencyPickerPopupWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		0BC32DB328E89B15004524C6 /* CCAddRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCAddRowCell.swift; sourceTree = "<group>"; };
 		0BC32DBB28E941A5004524C6 /* CCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCModel.swift; sourceTree = "<group>"; };
 		0BC32DBD28E94C74004524C6 /* CCBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBaseCell.swift; sourceTree = "<group>"; };
+		0BC32DBF28E9617A004524C6 /* CCCurrencyPickerPopupWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCCurrencyPickerPopupWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				0B4DDC6528E7680900DDBF5C /* CCCurrencyCell.swift */,
 				0BC32DB328E89B15004524C6 /* CCAddRowCell.swift */,
 				0BC32DBD28E94C74004524C6 /* CCBaseCell.swift */,
+				0BC32DBF28E9617A004524C6 /* CCCurrencyPickerPopupWindow.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			files = (
 				0BC32DBE28E94C74004524C6 /* CCBaseCell.swift in Sources */,
 				0B4DDC5428E75CE300DDBF5C /* CCViewController.swift in Sources */,
+				0BC32DC028E9617A004524C6 /* CCCurrencyPickerPopupWindow.swift in Sources */,
 				0B4DDC6628E7680900DDBF5C /* CCCurrencyCell.swift in Sources */,
 				0BC32DBC28E941A5004524C6 /* CCModel.swift in Sources */,
 				0B4DDC6428E7644100DDBF5C /* CCNavigationController.swift in Sources */,

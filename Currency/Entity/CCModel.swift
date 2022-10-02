@@ -11,7 +11,5 @@ class CCModel {
     var addedCurrencies = [String]()
     var conversionRates = [String:Double]()
     var lastUpdateTime = Date(timeIntervalSince1970: 0)
-    
-    lazy var availableCurrencies : [String] = Array(conversionRates.keys)
 }
 

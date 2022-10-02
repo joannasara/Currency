@@ -11,7 +11,10 @@ class CCInteractor {
     
     var model = CCModel()
     
+    
     weak var presenter : CCPresenter?
+    var currentBaseCurrency = "SGD"
+    var currentBaseCurrencyValue = 1000.0
     
     init() {
         addCurrency(currency: "SGD")
@@ -20,11 +23,25 @@ class CCInteractor {
     }
     
     func addCurrency(currency: String) {
+        if (model.addedCurrencies.isEmpty) {
+            currentBaseCurrency = currency
+            currentBaseCurrencyValue = 1000
+        }
         model.addedCurrencies.append(currency)
+        requestExchangeRates()
     }
     
     func removeCurrency(index: Int) {
         model.addedCurrencies.remove(at: index)
+        requestExchangeRates()
+    }
+    
+    func availableCurrencies() -> [String] {
+        return Array(model.conversionRates.keys)
+    }
+    
+    func requestExchangeRates() {
+        requestExchangeRates(baseCurrency: currentBaseCurrency, baseCurrencyValue: currentBaseCurrencyValue)
     }
     
     func requestExchangeRates(baseCurrency: String, baseCurrencyValue: Double) {
@@ -70,6 +87,8 @@ class CCInteractor {
                         }
                     }
 
+                    self.currentBaseCurrency = baseCurrency
+                    self.currentBaseCurrencyValue = baseCurrencyValue
                     self.presenter?.exchangeRatesUpdated(data:result, lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:true)
                 } catch {
                     print("Failed to parse supported currencies")

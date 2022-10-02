@@ -18,6 +18,7 @@ class CCViewController: UITableViewController {
     var data : [[String]] = [[String]]()
     var headingText : String = "Loading data..."
     var updateSuccesful = false
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,21 +70,26 @@ class CCViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CCCurrencyCell.cellHeight
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            presenter.tableViewDeleteRow(index: indexPath.row)
+        }
+    }
         
     func updateUI(data: [[String]], headingText: String) {
-        updateTable(data: data)
-        updateHeading(headingText: headingText)
-    }
-    
-    func updateTable(data: [[String]]) {
         self.data = data
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+        self.headingText = headingText
     }
     
-    func updateHeading(headingText: String) {
-        self.headingText = headingText
+    func showPopup() {
+        let popupWindow = CCCurrencyPickerPopupWindow(presenter: presenter)
+        presenter.popupWindow = popupWindow
+        self.present(popupWindow, animated: true, completion: nil)
     }
 }
 

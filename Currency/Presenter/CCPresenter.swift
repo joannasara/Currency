@@ -11,6 +11,11 @@ class CCPresenter {
     
     let interactor = CCInteractor()
     weak var view : CCViewController?
+    weak var popupWindow : CCCurrencyPickerPopupWindow? {
+        didSet {
+            popupWindow?.data = interactor.availableCurrencies()
+        }
+    }
     
     init() {
         interactor.presenter = self
@@ -21,9 +26,16 @@ class CCPresenter {
         interactor.requestExchangeRates(baseCurrency: labelString, baseCurrencyValue: textViewValue)
     }
     
+    func tableViewDeleteRow(index: Int) {
+        interactor.removeCurrency(index: index)
+    }
+    
     func addButtonClicked() {
-        interactor.addCurrency(currency: "SGD")
-        interactor.requestExchangeRates(baseCurrency: "SGD", baseCurrencyValue: 1000.0)
+        view?.showPopup()
+    }
+    
+    func pickerCurrencyChosen(currency: String) {
+        interactor.addCurrency(currency: currency)
     }
     
     func exchangeRatesUpdated(data: [[String]], lastUpdateTime:Date, updateSuccessful:Bool) {
