@@ -12,6 +12,8 @@ class CCCurrencyCell: CCBaseCell, UITextViewDelegate {
     let currencyLabel = UILabel()
     let valueTextView = UITextView()
     let updateButton = UIButton()
+    
+    var valueBeforeEdit = ""
 
     override func setupUI() {
         super.setupUI()
@@ -48,10 +50,14 @@ class CCCurrencyCell: CCBaseCell, UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         updateButton.isHidden = false
+        valueBeforeEdit = textView.text
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         updateButton.isHidden = true
-        CCPresenter.shared.tableViewCellEdited(labelString: currencyLabel.text ?? "", textViewValue: Double(textView.text) ?? 0.0)
+        if (textView.text != valueBeforeEdit) {
+            CCPresenter.shared.tableViewCellEdited(labelString: currencyLabel.text ?? "", textViewValue: Double(textView.text) ?? 0.0)
+        }
+        valueBeforeEdit = ""
     }
 }

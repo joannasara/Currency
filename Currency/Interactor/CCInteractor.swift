@@ -9,22 +9,12 @@ import Foundation
 
 class CCInteractor {
     
-    var model = CCModel()
-    
-    
-    var currentBaseCurrency = "SGD"
-    var currentBaseCurrencyValue = 1000.0
-    
-    init() {
-        addCurrency(currency: "SGD")
-        addCurrency(currency: "USD")
-        addCurrency(currency: "CAD")
-    }
-    
+    var model = CCStorage.getModel()
+        
     func addCurrency(currency: String) {
         if (model.addedCurrencies.isEmpty) {
-            currentBaseCurrency = currency
-            currentBaseCurrencyValue = 1000
+            model.currentBaseCurrency = currency
+            model.currentBaseCurrencyValue = 1000
         }
         model.addedCurrencies.append(currency)
         requestExchangeRates()
@@ -40,7 +30,7 @@ class CCInteractor {
     }
     
     func requestExchangeRates() {
-        requestExchangeRates(baseCurrency: currentBaseCurrency, baseCurrencyValue: currentBaseCurrencyValue)
+        requestExchangeRates(baseCurrency: model.currentBaseCurrency, baseCurrencyValue: model.currentBaseCurrencyValue)
     }
     
     func requestExchangeRates(baseCurrency: String, baseCurrencyValue: Double) {
@@ -86,8 +76,11 @@ class CCInteractor {
                         }
                     }
 
-                    self.currentBaseCurrency = baseCurrency
-                    self.currentBaseCurrencyValue = baseCurrencyValue
+                    self.model.currentBaseCurrency = baseCurrency
+                    self.model.currentBaseCurrencyValue = baseCurrencyValue
+                    
+                    CCStorage.saveModel(self.model)
+                    
                     CCPresenter.shared.exchangeRatesUpdated(data:result, lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:true)
                 } catch {
                     print("Failed to parse supported currencies")

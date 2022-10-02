@@ -18,7 +18,7 @@ class CCPresenter {
     
     weak var view : CCViewController? {
         didSet {
-            interactor.requestExchangeRates(baseCurrency: "SGD", baseCurrencyValue: 1000.0)
+            interactor.requestExchangeRates()
         }
     }
     weak var popupWindow : CCCurrencyPickerPopupWindow? {
