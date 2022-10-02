@@ -11,14 +11,15 @@ import UIKit
 
 class CCCurrencyPickerPopupWindow: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
     
-    var chosenCurrency = ""
     var data : [String] = [String]() {
         didSet {
-            if (!data.isEmpty) {
+            if !data.isEmpty {
                 chosenCurrency = data[0]
             }
         }
     }
+    
+    private var chosenCurrency = ""
     private let popUpWindowView = CCCurrencyPickerPopupWindowView()
     
     init() {
@@ -38,10 +39,9 @@ class CCCurrencyPickerPopupWindow: UIViewController, UIPickerViewDelegate, UIPic
         view = popUpWindowView
     }
 
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
-    
     
     @objc func handleOKButtonClicked() {
         CCPresenter.shared.pickerCurrencyChosen(currency: chosenCurrency)
@@ -84,7 +84,7 @@ private class CCCurrencyPickerPopupWindowView: UIView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     private func setupUI() {

@@ -33,7 +33,7 @@ class CCAddRowCell: CCBaseCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        if (selected) {
+        if selected {
             CCPresenter.shared.addButtonClicked()
         }
     }

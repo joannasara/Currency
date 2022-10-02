@@ -35,7 +35,7 @@ class CCPresenter {
         interactor.exchangeRates(baseCurrency: labelString, baseCurrencyValue: textViewValue)
     }
     
-    func tableViewDeleteRow(index: Int) {
+    func tableViewDidSwipeLeft(index: Int) {
         interactor.removeCurrency(index: index)
     }
     
@@ -58,7 +58,7 @@ class CCPresenter {
         formatter.dateFormat = "dd MMM YYYY, hh:mm:ss"
         let dateString = formatter.string(from: lastUpdateTime)
         
-        if (updateSuccessful) {
+        if updateSuccessful {
             self.converterVC?.updateUI(data: data, headingText: "Last Update Time: \(dateString)")
         } else {
             self.converterVC?.updateUI(data: data, headingText: "Update failed!!")

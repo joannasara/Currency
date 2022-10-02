@@ -9,7 +9,7 @@ import Foundation
 
 public class CCStorage {
     
-    private init() { }
+    private init() {}
 
     static private func getURL() -> URL {
         if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {

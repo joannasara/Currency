@@ -22,14 +22,14 @@ class CCBaseCell: UITableViewCell {
     }
     
     func setupUI() {
-        self.selectionStyle = UITableViewCell.SelectionStyle.none
+        selectionStyle = UITableViewCell.SelectionStyle.none
         
-        self.contentView.backgroundColor = UIColor.white
-        self.contentView.layer.shadowColor = UIColor.black.cgColor
-        self.contentView.layer.shadowOpacity = 0.2
-        self.contentView.layer.shadowOffset = .zero
-        self.contentView.layer.shadowRadius = 2
-        self.contentView.layer.cornerRadius = 10
+        contentView.backgroundColor = UIColor.white
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.2
+        contentView.layer.shadowOffset = .zero
+        contentView.layer.shadowRadius = 2
+        contentView.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

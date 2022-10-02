@@ -12,7 +12,7 @@ class CCInteractor {
     var model = CCStorage.getModel()
         
     func addCurrency(currency: String) {
-        if (model.addedCurrencies.isEmpty) {
+        if model.addedCurrencies.isEmpty {
             model.currentBaseCurrency = currency
             model.currentBaseCurrencyValue = 1000
         }
@@ -36,7 +36,7 @@ class CCInteractor {
     func exchangeRates(baseCurrency: String, baseCurrencyValue: Double) {
         CCRequester.requestExchangeRates(baseCurrency: baseCurrency, baseCurrencyValue: baseCurrencyValue) { data, requestTime, requestSuccessful in
             
-            if (!requestSuccessful) {
+            if !requestSuccessful {
                 CCPresenter.shared.exchangeRatesUpdated(data:[[String]](), lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:false)
                 return
             }
@@ -64,7 +64,7 @@ class CCInteractor {
         var result = [[String]]()
         for currency in self.model.addedCurrencies {
             if let value = self.model.conversionRates[currency] {
-                var roundedValue = round(value * model.currentBaseCurrencyValue * 100) / 100.0
+                let roundedValue = round(value * model.currentBaseCurrencyValue * 100) / 100.0
                 result.append([currency, String(roundedValue)])
             } else {
                 result.append([currency, ""])

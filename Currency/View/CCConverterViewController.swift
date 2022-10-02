@@ -51,7 +51,7 @@ class CCConverterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.row < data.count) {
+        if indexPath.row < data.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: currencyCellID, for: indexPath) as! CCCurrencyCell
             cell.currencyLabel.text = data[indexPath.row][0]
             cell.valueTextView.text = data[indexPath.row][1]
@@ -71,8 +71,8 @@ class CCConverterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            CCPresenter.shared.tableViewDeleteRow(index: indexPath.row)
+        if editingStyle == .delete {
+            CCPresenter.shared.tableViewDidSwipeLeft(index: indexPath.row)
         }
     }
         

@@ -9,7 +9,7 @@ import Foundation
 
 public class CCRequester {
     
-    private init() { }
+    private init() {}
     
     static func requestExchangeRates(baseCurrency: String, baseCurrencyValue: Double, completion: @escaping (NSDictionary, Date, Bool) -> Void) {
         let requestTime = Date()
@@ -25,7 +25,7 @@ public class CCRequester {
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler:  { (data, response, error) in
                         
-            if (error != nil) {
+            if error != nil {
                 completion(NSDictionary(), requestTime, false)
                 return
             }
@@ -42,6 +42,7 @@ public class CCRequester {
                     completion(NSDictionary(), requestTime, false)
                     return
                 }
+                
                 completion(conversionRates, requestTime, true)
             } catch {
                 completion(NSDictionary(), requestTime, false)

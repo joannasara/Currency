@@ -33,6 +33,10 @@ class CCCurrencyCell: CCBaseCell, UITextViewDelegate {
         self.contentView.addSubview(updateButton)
     }
     
+    @objc func handleButtonClick() {
+        valueTextView.resignFirstResponder()
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
                 
@@ -61,10 +65,6 @@ class CCCurrencyCell: CCBaseCell, UITextViewDelegate {
         ])
     }
     
-    @objc func handleButtonClick() {
-        valueTextView.resignFirstResponder()
-    }
-    
     // MARK: - UITextViewDelegate
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -74,7 +74,7 @@ class CCCurrencyCell: CCBaseCell, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         updateButton.isHidden = true
-        if (textView.text != valueBeforeEdit) {
+        if textView.text != valueBeforeEdit {
             CCPresenter.shared.tableViewCellEdited(labelString: currencyLabel.text ?? "", textViewValue: Double(textView.text) ?? 0.0)
         }
         valueBeforeEdit = ""
