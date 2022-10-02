@@ -18,7 +18,7 @@ class CCPresenter {
     
     weak var view : CCViewController? {
         didSet {
-            interactor.requestExchangeRates()
+            interactor.exchangeRates()
         }
     }
     weak var popupWindow : CCCurrencyPickerPopupWindow? {
@@ -28,11 +28,15 @@ class CCPresenter {
     }
     
     func tableViewCellEdited(labelString: String, textViewValue: Double) {
-        interactor.requestExchangeRates(baseCurrency: labelString, baseCurrencyValue: textViewValue)
+        interactor.exchangeRates(baseCurrency: labelString, baseCurrencyValue: textViewValue)
     }
     
     func tableViewDeleteRow(index: Int) {
         interactor.removeCurrency(index: index)
+    }
+    
+    func tableViewDidPullDown() {
+        interactor.exchangeRates()
     }
     
     func addButtonClicked() {

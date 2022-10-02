@@ -24,6 +24,10 @@ class CCViewController: UITableViewController {
         self.view.backgroundColor = UIColor.white
         
         self.title = "Currency Converter"
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh data")
+        refreshControl?.addTarget(self, action: #selector(handlePullToRefresh), for: .valueChanged)
                 
         tableView.register(CCCurrencyCell.self, forCellReuseIdentifier: currencyCellID)
         tableView.register(CCAddRowCell.self, forCellReuseIdentifier: addCellID)
@@ -81,6 +85,11 @@ class CCViewController: UITableViewController {
             self.tableView.reloadData()
         }
         self.headingText = headingText
+    }
+    
+    @objc func handlePullToRefresh() {
+        CCPresenter.shared.tableViewDidPullDown()
+        refreshControl?.endRefreshing()
     }
 }
 

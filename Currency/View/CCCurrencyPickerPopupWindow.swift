@@ -30,8 +30,11 @@ class CCCurrencyPickerPopupWindow: UIViewController, UIPickerViewDelegate, UIPic
         popUpWindowView.picker.delegate = self
         popUpWindowView.picker.dataSource = self
         popUpWindowView.popupTitle.text = "Pick a Currency"
-        popUpWindowView.popupButton.setTitle("OK", for: .normal)
-        popUpWindowView.popupButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        popUpWindowView.okButton.setTitle("OK", for: .normal)
+        popUpWindowView.okButton.addTarget(self, action: #selector(handleOKButtonClicked), for: .touchUpInside)
+        popUpWindowView.cancelButton.setTitle("Cancel", for: .normal)
+        popUpWindowView.cancelButton.addTarget(self, action: #selector(handleCancelButtonClicked), for: .touchUpInside)
+        
         view = popUpWindowView
     }
 
@@ -40,8 +43,12 @@ class CCCurrencyPickerPopupWindow: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     
-    @objc func dismissView(){
+    @objc func handleOKButtonClicked() {
         CCPresenter.shared.pickerCurrencyChosen(currency: chosenCurrency)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleCancelButtonClicked() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -68,7 +75,8 @@ private class CCCurrencyPickerPopupWindowView: UIView {
     let popupView = UIView()
     let popupTitle = UILabel()
     let picker = UIPickerView()
-    let popupButton = UIButton()
+    let okButton = UIButton()
+    let cancelButton = UIButton()
         
     init() {
         super.init(frame: CGRect.zero)
@@ -80,7 +88,7 @@ private class CCCurrencyPickerPopupWindowView: UIView {
     }
     
     func setupUI() {
-        backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        backgroundColor = UIColor.black.withAlphaComponent(0.25)
         addSubview(popupView)
         
         popupView.layer.masksToBounds = true
@@ -97,44 +105,58 @@ private class CCCurrencyPickerPopupWindowView: UIView {
         
         popupView.addSubview(picker)
         
-        popupButton.setTitleColor(UIColor.black, for: .normal)
-        popupButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        popupView.addSubview(popupButton)
+        okButton.setTitleColor(UIColor.black, for: .normal)
+        okButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        popupView.addSubview(okButton)
+        
+        cancelButton.setTitleColor(UIColor.black, for: .normal)
+        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        popupView.addSubview(cancelButton)
     }
     
     override func layoutSubviews() {
-        let screenWith = UIScreen.main.bounds.width
+        let popupWidth = UIScreen.main.bounds.width * 0.75
         
         popupView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            popupView.widthAnchor.constraint(equalToConstant: screenWith * 0.75),
+            popupView.widthAnchor.constraint(equalToConstant:popupWidth),
             popupView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             popupView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
             ])
         
         popupTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            popupTitle.leadingAnchor.constraint(equalTo: popupView.leadingAnchor, constant: 2),
-            popupTitle.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -2),
-            popupTitle.topAnchor.constraint(equalTo: popupView.topAnchor, constant: 2),
+            popupTitle.leadingAnchor.constraint(equalTo: popupView.leadingAnchor),
+            popupTitle.trailingAnchor.constraint(equalTo: popupView.trailingAnchor),
+            popupTitle.topAnchor.constraint(equalTo: popupView.topAnchor),
             popupTitle.heightAnchor.constraint(equalToConstant: 50)
             ])
         
         picker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             picker.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            picker.topAnchor.constraint(equalTo: popupTitle.bottomAnchor, constant: 8),
-            picker.leadingAnchor.constraint(equalTo: popupView.leadingAnchor, constant: 15),
-            picker.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -15),
-            picker.bottomAnchor.constraint(equalTo: popupButton.topAnchor, constant: -8)
+            picker.topAnchor.constraint(equalTo: popupTitle.bottomAnchor),
+            picker.leadingAnchor.constraint(equalTo: popupView.leadingAnchor),
+            picker.trailingAnchor.constraint(equalTo: popupView.trailingAnchor),
+            picker.bottomAnchor.constraint(equalTo: okButton.topAnchor)
             ])
         
-        popupButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            popupButton.heightAnchor.constraint(equalToConstant: 50),
-            popupButton.leadingAnchor.constraint(equalTo: popupView.leadingAnchor, constant: 2),
-            popupButton.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -2),
-            popupButton.bottomAnchor.constraint(equalTo: popupView.bottomAnchor, constant: -2)
+            cancelButton.heightAnchor.constraint(equalToConstant: 50),
+            cancelButton.leadingAnchor.constraint(equalTo: popupView.leadingAnchor),
+            cancelButton.widthAnchor.constraint(equalToConstant: popupWidth/2),
+            cancelButton.bottomAnchor.constraint(equalTo: popupView.bottomAnchor)
             ])
+        
+        okButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            okButton.heightAnchor.constraint(equalToConstant: 50),
+            okButton.leadingAnchor.constraint(equalTo: cancelButton.trailingAnchor),
+            okButton.trailingAnchor.constraint(equalTo: popupView.trailingAnchor),
+            okButton.bottomAnchor.constraint(equalTo: popupView.bottomAnchor)
+            ])
+        
+        
     }
 }
