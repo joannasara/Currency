@@ -9,24 +9,26 @@ import UIKit
 
 class CCAddRowCell: CCBaseCell {
     
-    let addButton = UIButton()
+    let plusImage = UIImageView()
 
     override func setupUI() {
         super.setupUI()
-        
-        addButton.setImage(UIImage(systemName: "plus"), for: UIControl.State.normal)
-        addButton.addTarget(self, action: #selector(handleButtonClick), for: UIControl.Event.touchUpInside)
-        contentView.addSubview(addButton)
+                
+        plusImage.image = UIImage(systemName: "plus")
+        contentView.addSubview(plusImage)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let frameWidth = contentView.frame.width
-        addButton.frame = CGRect(x: (frameWidth-50)/2, y: 0, width: 50, height: 50)
+        plusImage.frame = CGRect(x: (contentView.frame.width-20)/2, y: (contentView.frame.height-20)/2, width: 20, height: 20)
     }
     
-    @objc func handleButtonClick() {
-        presenter?.addButtonClicked()
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        if (selected) {
+            CCPresenter.shared.addButtonClicked()
+        }
     }
 }

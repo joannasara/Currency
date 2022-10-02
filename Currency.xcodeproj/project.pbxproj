@@ -20,6 +20,7 @@
 		0BC32DBC28E941A5004524C6 /* CCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DBB28E941A5004524C6 /* CCModel.swift */; };
 		0BC32DBE28E94C74004524C6 /* CCBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DBD28E94C74004524C6 /* CCBaseCell.swift */; };
 		0BC32DC028E9617A004524C6 /* CCCurrencyPickerPopupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DBF28E9617A004524C6 /* CCCurrencyPickerPopupWindow.swift */; };
+		0BC32DC328E976A0004524C6 /* CCRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DC228E976A0004524C6 /* CCRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		0BC32DBB28E941A5004524C6 /* CCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCModel.swift; sourceTree = "<group>"; };
 		0BC32DBD28E94C74004524C6 /* CCBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBaseCell.swift; sourceTree = "<group>"; };
 		0BC32DBF28E9617A004524C6 /* CCCurrencyPickerPopupWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCCurrencyPickerPopupWindow.swift; sourceTree = "<group>"; };
+		0BC32DC228E976A0004524C6 /* CCRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,10 +72,11 @@
 		0B4DDC4E28E75CE300DDBF5C /* Currency */ = {
 			isa = PBXGroup;
 			children = (
+				0BC32DB628E8B031004524C6 /* Presenter */,
+				0BC32DC128E9768C004524C6 /* Routing */,
 				0BC32DB828E8B04D004524C6 /* Entity */,
 				0BC32DB728E8B046004524C6 /* Interactor */,
 				0BC32DB528E8AFF7004524C6 /* View */,
-				0BC32DB628E8B031004524C6 /* Presenter */,
 				0B4DDC4F28E75CE300DDBF5C /* AppDelegate.swift */,
 				0B4DDC5128E75CE300DDBF5C /* SceneDelegate.swift */,
 				0B4DDC5828E75CE700DDBF5C /* Assets.xcassets */,
@@ -118,6 +121,14 @@
 				0BC32DBB28E941A5004524C6 /* CCModel.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		0BC32DC128E9768C004524C6 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				0BC32DC228E976A0004524C6 /* CCRouter.swift */,
+			);
+			path = Routing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BC32DBE28E94C74004524C6 /* CCBaseCell.swift in Sources */,
+				0BC32DC328E976A0004524C6 /* CCRouter.swift in Sources */,
 				0B4DDC5428E75CE300DDBF5C /* CCViewController.swift in Sources */,
 				0BC32DC028E9617A004524C6 /* CCCurrencyPickerPopupWindow.swift in Sources */,
 				0B4DDC6628E7680900DDBF5C /* CCCurrencyCell.swift in Sources */,

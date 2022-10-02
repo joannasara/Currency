@@ -12,7 +12,6 @@ class CCInteractor {
     var model = CCModel()
     
     
-    weak var presenter : CCPresenter?
     var currentBaseCurrency = "SGD"
     var currentBaseCurrencyValue = 1000.0
     
@@ -58,7 +57,7 @@ class CCInteractor {
             
             if (error != nil) {
                 print("Unable to get supported currencies")
-                self.presenter?.exchangeRatesUpdated(data:[[String]](), lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:false)
+                CCPresenter.shared.exchangeRatesUpdated(data:[[String]](), lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:false)
                 return
             }
             
@@ -67,7 +66,7 @@ class CCInteractor {
                     let dataJson = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? NSDictionary
                     
                     guard let conversionRates = dataJson?["conversion_rates"] as? NSDictionary else {
-                        self.presenter?.exchangeRatesUpdated(data: [[String]](), lastUpdateTime: self.model.lastUpdateTime, updateSuccessful: false)
+                        CCPresenter.shared.exchangeRatesUpdated(data: [[String]](), lastUpdateTime: self.model.lastUpdateTime, updateSuccessful: false)
                         return
                     }
                     
@@ -89,10 +88,10 @@ class CCInteractor {
 
                     self.currentBaseCurrency = baseCurrency
                     self.currentBaseCurrencyValue = baseCurrencyValue
-                    self.presenter?.exchangeRatesUpdated(data:result, lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:true)
+                    CCPresenter.shared.exchangeRatesUpdated(data:result, lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:true)
                 } catch {
                     print("Failed to parse supported currencies")
-                    self.presenter?.exchangeRatesUpdated(data:[[String]](), lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:false)
+                    CCPresenter.shared.exchangeRatesUpdated(data:[[String]](), lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:false)
                 }
             }
         })

@@ -12,9 +12,7 @@ class CCViewController: UITableViewController {
     
     let currencyCellID = "currencyCellID"
     let addCellID = "addCellID"
-    
-    var presenter = CCPresenter()
-    
+        
     var data : [[String]] = [[String]]()
     var headingText : String = "Loading data..."
     var updateSuccesful = false
@@ -24,12 +22,14 @@ class CCViewController: UITableViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
+        
+        self.title = "Currency Converter"
                 
         tableView.register(CCCurrencyCell.self, forCellReuseIdentifier: currencyCellID)
         tableView.register(CCAddRowCell.self, forCellReuseIdentifier: addCellID)
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
-        presenter.view = self
+        CCPresenter.shared.view = self
     }
     
 
@@ -50,14 +50,11 @@ class CCViewController: UITableViewController {
             
             cell.currencyLabel.text = data[indexPath.row][0]
             cell.valueTextView.text = data[indexPath.row][1]
-            cell.presenter = presenter
             
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: addCellID, for: indexPath) as! CCAddRowCell
-            
-            cell.presenter = presenter
-            
+                        
             return cell
         }
         
@@ -73,7 +70,7 @@ class CCViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            presenter.tableViewDeleteRow(index: indexPath.row)
+            CCPresenter.shared.tableViewDeleteRow(index: indexPath.row)
         }
     }
         
@@ -84,12 +81,6 @@ class CCViewController: UITableViewController {
             self.tableView.reloadData()
         }
         self.headingText = headingText
-    }
-    
-    func showPopup() {
-        let popupWindow = CCCurrencyPickerPopupWindow(presenter: presenter)
-        presenter.popupWindow = popupWindow
-        self.present(popupWindow, animated: true, completion: nil)
     }
 }
 

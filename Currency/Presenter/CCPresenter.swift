@@ -5,21 +5,26 @@
 //  Created by Joanna Sara on 1/10/22.
 //
 
-import Foundation
+import UIKit
 
 class CCPresenter {
     
+    static let shared = CCPresenter()
+    private init() {}
+    
     let interactor = CCInteractor()
-    weak var view : CCViewController?
+    let router = CCRouter()
+    var navigationController : UINavigationController?
+    
+    weak var view : CCViewController? {
+        didSet {
+            interactor.requestExchangeRates(baseCurrency: "SGD", baseCurrencyValue: 1000.0)
+        }
+    }
     weak var popupWindow : CCCurrencyPickerPopupWindow? {
         didSet {
             popupWindow?.data = interactor.availableCurrencies()
         }
-    }
-    
-    init() {
-        interactor.presenter = self
-        interactor.requestExchangeRates(baseCurrency: "SGD", baseCurrencyValue: 1000.0)
     }
     
     func tableViewCellEdited(labelString: String, textViewValue: Double) {
@@ -31,7 +36,7 @@ class CCPresenter {
     }
     
     func addButtonClicked() {
-        view?.showPopup()
+        router.showCurrencyPickerPopupWindow()
     }
     
     func pickerCurrencyChosen(currency: String) {

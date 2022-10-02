@@ -11,7 +11,7 @@ class CCNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        CCPresenter.shared.navigationController = self
         // Do any additional setup after loading the view.
     }
     

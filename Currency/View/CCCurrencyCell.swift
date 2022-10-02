@@ -18,13 +18,13 @@ class CCCurrencyCell: CCBaseCell, UITextViewDelegate {
         
         contentView.addSubview(currencyLabel)
         
+        valueTextView.font = UIFont.systemFont(ofSize: 14)
         valueTextView.layer.borderColor = UIColor.lightGray.cgColor
         valueTextView.layer.borderWidth = 0.5
         valueTextView.keyboardType = UIKeyboardType.numberPad
         valueTextView.delegate = self
         self.contentView.addSubview(valueTextView)
         
-        // todojo need to disable button when loading
         updateButton.isHidden = true
         updateButton.setImage(UIImage(systemName: "arrow.right"), for: UIControl.State.normal)
         updateButton.addTarget(self, action: #selector(handleButtonClick), for: UIControl.Event.touchUpInside)
@@ -52,6 +52,6 @@ class CCCurrencyCell: CCBaseCell, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         updateButton.isHidden = true
-        presenter?.tableViewCellEdited(labelString: currencyLabel.text ?? "", textViewValue: Double(textView.text) ?? 0.0)
+        CCPresenter.shared.tableViewCellEdited(labelString: currencyLabel.text ?? "", textViewValue: Double(textView.text) ?? 0.0)
     }
 }

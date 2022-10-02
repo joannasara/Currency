@@ -10,9 +10,7 @@ import UIKit
 class CCBaseCell: UITableViewCell {
     
     static let cellHeight = 65.0
-    
-    weak var presenter: CCPresenter?
-    
+        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
                 

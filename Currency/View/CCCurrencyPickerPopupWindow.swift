@@ -11,22 +11,22 @@ import UIKit
 
 class CCCurrencyPickerPopupWindow: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
     
-    weak var presenter : CCPresenter?
     var chosenCurrency = ""
     var data : [String] = [String]() {
         didSet {
-            chosenCurrency = data[0]
+            if (!data.isEmpty) {
+                chosenCurrency = data[0]
+            }
         }
     }
     private let popUpWindowView = CCCurrencyPickerPopupWindowView()
     
-    init(presenter: CCPresenter) {
+    init() {
         super.init(nibName: nil, bundle: nil)
+        
         modalTransitionStyle = .crossDissolve
         modalPresentationStyle = .overFullScreen
-        
-        self.presenter = presenter
-                        
+                                
         popUpWindowView.picker.delegate = self
         popUpWindowView.picker.dataSource = self
         popUpWindowView.popupTitle.text = "Pick a Currency"
@@ -41,7 +41,7 @@ class CCCurrencyPickerPopupWindow: UIViewController, UIPickerViewDelegate, UIPic
     
     
     @objc func dismissView(){
-        presenter?.pickerCurrencyChosen(currency: chosenCurrency)
+        CCPresenter.shared.pickerCurrencyChosen(currency: chosenCurrency)
         self.dismiss(animated: true, completion: nil)
     }
     
