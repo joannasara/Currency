@@ -13,10 +13,12 @@
 		0B4DDC5928E75CE700DDBF5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B4DDC5828E75CE700DDBF5C /* Assets.xcassets */; };
 		0B4DDC5C28E75CE700DDBF5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B4DDC5A28E75CE700DDBF5C /* LaunchScreen.storyboard */; };
 		0B4DDC6428E7644100DDBF5C /* CCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4DDC6328E7644100DDBF5C /* CCNavigationController.swift */; };
-		0B4DDC6628E7680900DDBF5C /* CCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4DDC6528E7680900DDBF5C /* CCTableViewCell.swift */; };
+		0B4DDC6628E7680900DDBF5C /* CCCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4DDC6528E7680900DDBF5C /* CCCurrencyCell.swift */; };
 		0BC32DB028E85BD0004524C6 /* CCInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DAF28E85BD0004524C6 /* CCInteractor.swift */; };
 		0BC32DB228E89325004524C6 /* CCPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DB128E89325004524C6 /* CCPresenter.swift */; };
 		0BC32DB428E89B15004524C6 /* CCAddRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DB328E89B15004524C6 /* CCAddRowCell.swift */; };
+		0BC32DBC28E941A5004524C6 /* CCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DBB28E941A5004524C6 /* CCModel.swift */; };
+		0BC32DBE28E94C74004524C6 /* CCBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC32DBD28E94C74004524C6 /* CCBaseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +30,12 @@
 		0B4DDC5B28E75CE700DDBF5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B4DDC5D28E75CE700DDBF5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B4DDC6328E7644100DDBF5C /* CCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCNavigationController.swift; sourceTree = "<group>"; };
-		0B4DDC6528E7680900DDBF5C /* CCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTableViewCell.swift; sourceTree = "<group>"; };
+		0B4DDC6528E7680900DDBF5C /* CCCurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCCurrencyCell.swift; sourceTree = "<group>"; };
 		0BC32DAF28E85BD0004524C6 /* CCInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCInteractor.swift; sourceTree = "<group>"; };
 		0BC32DB128E89325004524C6 /* CCPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCPresenter.swift; sourceTree = "<group>"; };
 		0BC32DB328E89B15004524C6 /* CCAddRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCAddRowCell.swift; sourceTree = "<group>"; };
+		0BC32DBB28E941A5004524C6 /* CCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCModel.swift; sourceTree = "<group>"; };
+		0BC32DBD28E94C74004524C6 /* CCBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBaseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,19 +68,53 @@
 		0B4DDC4E28E75CE300DDBF5C /* Currency */ = {
 			isa = PBXGroup;
 			children = (
+				0BC32DB828E8B04D004524C6 /* Entity */,
+				0BC32DB728E8B046004524C6 /* Interactor */,
+				0BC32DB528E8AFF7004524C6 /* View */,
+				0BC32DB628E8B031004524C6 /* Presenter */,
 				0B4DDC4F28E75CE300DDBF5C /* AppDelegate.swift */,
 				0B4DDC5128E75CE300DDBF5C /* SceneDelegate.swift */,
-				0B4DDC5328E75CE300DDBF5C /* CCViewController.swift */,
 				0B4DDC5828E75CE700DDBF5C /* Assets.xcassets */,
 				0B4DDC5A28E75CE700DDBF5C /* LaunchScreen.storyboard */,
 				0B4DDC5D28E75CE700DDBF5C /* Info.plist */,
-				0B4DDC6328E7644100DDBF5C /* CCNavigationController.swift */,
-				0B4DDC6528E7680900DDBF5C /* CCTableViewCell.swift */,
-				0BC32DAF28E85BD0004524C6 /* CCInteractor.swift */,
-				0BC32DB128E89325004524C6 /* CCPresenter.swift */,
-				0BC32DB328E89B15004524C6 /* CCAddRowCell.swift */,
 			);
 			path = Currency;
+			sourceTree = "<group>";
+		};
+		0BC32DB528E8AFF7004524C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B4DDC6328E7644100DDBF5C /* CCNavigationController.swift */,
+				0B4DDC5328E75CE300DDBF5C /* CCViewController.swift */,
+				0B4DDC6528E7680900DDBF5C /* CCCurrencyCell.swift */,
+				0BC32DB328E89B15004524C6 /* CCAddRowCell.swift */,
+				0BC32DBD28E94C74004524C6 /* CCBaseCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0BC32DB628E8B031004524C6 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				0BC32DB128E89325004524C6 /* CCPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		0BC32DB728E8B046004524C6 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				0BC32DAF28E85BD0004524C6 /* CCInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		0BC32DB828E8B04D004524C6 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				0BC32DBB28E941A5004524C6 /* CCModel.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,8 +187,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BC32DBE28E94C74004524C6 /* CCBaseCell.swift in Sources */,
 				0B4DDC5428E75CE300DDBF5C /* CCViewController.swift in Sources */,
-				0B4DDC6628E7680900DDBF5C /* CCTableViewCell.swift in Sources */,
+				0B4DDC6628E7680900DDBF5C /* CCCurrencyCell.swift in Sources */,
+				0BC32DBC28E941A5004524C6 /* CCModel.swift in Sources */,
 				0B4DDC6428E7644100DDBF5C /* CCNavigationController.swift in Sources */,
 				0B4DDC5028E75CE300DDBF5C /* AppDelegate.swift in Sources */,
 				0BC32DB428E89B15004524C6 /* CCAddRowCell.swift in Sources */,
