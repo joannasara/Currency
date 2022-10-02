@@ -87,7 +87,7 @@ private class CCCurrencyPickerPopupWindowView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupUI() {
+    private func setupUI() {
         backgroundColor = UIColor.black.withAlphaComponent(0.25)
         addSubview(popupView)
         

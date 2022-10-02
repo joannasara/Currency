@@ -41,29 +41,36 @@ class CCInteractor {
                 return
             }
             
-            self.model.conversionRates.removeAll()
-            for (key,value) in data {
-                self.model.conversionRates[key as! String] = (value as! Double)
-            }
+            self.updateModel(data: data, requestTime: requestTime, baseCurrency: baseCurrency, baseCurrencyValue: baseCurrencyValue)
             
-            self.model.lastUpdateTime = requestTime
-            
-            var result = [[String]]()
-            for currency in self.model.addedCurrencies {
-                if let value = self.model.conversionRates[currency] {
-                    result.append([currency, String(Int(value * baseCurrencyValue))])
-                } else {
-                    result.append([currency, ""])
-                }
-            }
-            
-            self.model.currentBaseCurrency = baseCurrency
-            self.model.currentBaseCurrencyValue = baseCurrencyValue
-            
-            CCStorage.saveModel(self.model)
-            
-            CCPresenter.shared.exchangeRatesUpdated(data:result, lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:true)
-            
+            CCPresenter.shared.exchangeRatesUpdated(data:self.addedConversionRates(), lastUpdateTime:self.model.lastUpdateTime, updateSuccessful:true)
         }
+    }
+    
+    private func updateModel(data: NSDictionary, requestTime: Date, baseCurrency: String, baseCurrencyValue: Double) {
+        self.model.conversionRates.removeAll()
+        for (key,value) in data {
+            self.model.conversionRates[key as! String] = (value as! Double)
+        }
+        
+        self.model.lastUpdateTime = requestTime
+        self.model.currentBaseCurrency = baseCurrency
+        self.model.currentBaseCurrencyValue = baseCurrencyValue
+        
+        CCStorage.saveModel(self.model)
+    }
+    
+    private func addedConversionRates() -> [[String]] {
+        var result = [[String]]()
+        for currency in self.model.addedCurrencies {
+            if let value = self.model.conversionRates[currency] {
+                var roundedValue = round(value * model.currentBaseCurrencyValue * 100) / 100.0
+                result.append([currency, String(roundedValue)])
+            } else {
+                result.append([currency, ""])
+            }
+        }
+        
+        return result
     }
 }

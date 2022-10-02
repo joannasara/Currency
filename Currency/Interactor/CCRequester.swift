@@ -9,12 +9,16 @@ import Foundation
 
 public class CCRequester {
     
-    fileprivate init() { }
+    private init() { }
     
     static func requestExchangeRates(baseCurrency: String, baseCurrencyValue: Double, completion: @escaping (NSDictionary, Date, Bool) -> Void) {
         let requestTime = Date()
         
-        let url = URL(string: "https://v6.exchangerate-api.com/v6/bd1f6d7d7449a1688a1cec16/latest/" + baseCurrency)!
+        guard let url = URL(string: "https://v6.exchangerate-api.com/v6/bd1f6d7d7449a1688a1cec16/latest/" + baseCurrency) else {
+            completion(NSDictionary(), requestTime, false)
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         

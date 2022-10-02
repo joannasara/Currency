@@ -12,20 +12,24 @@ class CCPresenter {
     static let shared = CCPresenter()
     private init() {}
     
-    let interactor = CCInteractor()
-    let router = CCRouter()
+    private let interactor = CCInteractor()
+    private let router = CCRouter()
+    
     var navigationController : UINavigationController?
     
-    weak var view : CCViewController? {
+    weak var converterVC : CCConverterViewController? {
         didSet {
             interactor.exchangeRates()
         }
     }
-    weak var popupWindow : CCCurrencyPickerPopupWindow? {
+    
+    weak var currencyPickerPopup : CCCurrencyPickerPopupWindow? {
         didSet {
-            popupWindow?.data = interactor.availableCurrencies()
+            currencyPickerPopup?.data = interactor.availableCurrencies()
         }
     }
+    
+    // MARK: - listen to view controller events
     
     func tableViewCellEdited(labelString: String, textViewValue: Double) {
         interactor.exchangeRates(baseCurrency: labelString, baseCurrencyValue: textViewValue)
@@ -47,15 +51,17 @@ class CCPresenter {
         interactor.addCurrency(currency: currency)
     }
     
+    // MARK: - listen to interactor events
+    
     func exchangeRatesUpdated(data: [[String]], lastUpdateTime:Date, updateSuccessful:Bool) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMMM YYYY, hh:mm:ss"
+        formatter.dateFormat = "dd MMM YYYY, hh:mm:ss"
         let dateString = formatter.string(from: lastUpdateTime)
         
         if (updateSuccessful) {
-            self.view?.updateUI(data: data, headingText: "Last Update: \(dateString)")
+            self.converterVC?.updateUI(data: data, headingText: "Last Update Time: \(dateString)")
         } else {
-            self.view?.updateUI(data: data, headingText: "Update failed!! Last Update: \(dateString)")
+            self.converterVC?.updateUI(data: data, headingText: "Update failed!!")
         }
     }
 }

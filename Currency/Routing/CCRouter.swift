@@ -15,7 +15,7 @@ class CCRouter {
     func showCurrencyPickerPopupWindow() {
         let popupWindow = CCCurrencyPickerPopupWindow()
         
-        CCPresenter.shared.popupWindow = popupWindow
+        CCPresenter.shared.currencyPickerPopup = popupWindow
         CCPresenter.shared.navigationController?.present(popupWindow, animated: true)
     }
 }

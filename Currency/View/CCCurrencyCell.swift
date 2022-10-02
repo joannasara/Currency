@@ -23,7 +23,7 @@ class CCCurrencyCell: CCBaseCell, UITextViewDelegate {
         valueTextView.font = UIFont.systemFont(ofSize: 14)
         valueTextView.layer.borderColor = UIColor.lightGray.cgColor
         valueTextView.layer.borderWidth = 0.5
-        valueTextView.keyboardType = UIKeyboardType.numberPad
+        valueTextView.keyboardType = UIKeyboardType.decimalPad
         valueTextView.delegate = self
         self.contentView.addSubview(valueTextView)
         

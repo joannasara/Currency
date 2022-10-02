@@ -20,11 +20,6 @@ class CCBaseCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     func setupUI() {
         self.selectionStyle = UITableViewCell.SelectionStyle.none

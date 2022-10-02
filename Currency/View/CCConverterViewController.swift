@@ -9,7 +9,6 @@ import UIKit
 
 class CCConverterViewController: UITableViewController {
     
-    
     let currencyCellID = "currencyCellID"
     let addCellID = "addCellID"
         
@@ -33,10 +32,13 @@ class CCConverterViewController: UITableViewController {
         tableView.register(CCAddRowCell.self, forCellReuseIdentifier: addCellID)
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
-        CCPresenter.shared.view = self
+        CCPresenter.shared.converterVC = self
     }
     
-
+    @objc func handlePullToRefresh() {
+        CCPresenter.shared.tableViewDidPullDown()
+        refreshControl?.endRefreshing()
+    }
 
     // MARK: - UITableView datasource
 
@@ -51,17 +53,13 @@ class CCConverterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row < data.count) {
             let cell = tableView.dequeueReusableCell(withIdentifier: currencyCellID, for: indexPath) as! CCCurrencyCell
-            
             cell.currencyLabel.text = data[indexPath.row][0]
             cell.valueTextView.text = data[indexPath.row][1]
-            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: addCellID, for: indexPath) as! CCAddRowCell
-                        
             return cell
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -78,6 +76,8 @@ class CCConverterViewController: UITableViewController {
         }
     }
         
+    // MARK: - handle updates from presenter
+    
     func updateUI(data: [[String]], headingText: String) {
         self.data = data
         
@@ -85,11 +85,6 @@ class CCConverterViewController: UITableViewController {
             self.tableView.reloadData()
         }
         self.headingText = headingText
-    }
-    
-    @objc func handlePullToRefresh() {
-        CCPresenter.shared.tableViewDidPullDown()
-        refreshControl?.endRefreshing()
     }
 }
 

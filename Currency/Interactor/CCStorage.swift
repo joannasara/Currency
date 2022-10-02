@@ -9,9 +9,9 @@ import Foundation
 
 public class CCStorage {
     
-    fileprivate init() { }
+    private init() { }
 
-    static fileprivate func getURL() -> URL {
+    static private func getURL() -> URL {
         if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             return url
         } else {
@@ -52,7 +52,7 @@ public class CCStorage {
                 return CCModel()
             }
         } else {
-            print("No data at \(url.path)!")
+            print("Unable to decode model!")
             return CCModel()
         }
     }
